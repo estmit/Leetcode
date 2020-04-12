@@ -10,7 +10,7 @@ public class FourSumII {
             for (int j = 0; j < D.length; ++j) {
                 int sum = C[i] + D[j];
                 // if sum not in map, set value to 1;
-                // else, apply remap bifunction (sum) to 1 and CDSums.get(1)
+                // else, apply remap bifunction (Integer::sum) to 1 and CDSums.get(sum)
                 CDSums.merge(sum, 1, Integer::sum);
             }
         }
