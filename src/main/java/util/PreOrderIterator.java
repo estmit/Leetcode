@@ -29,6 +29,14 @@ public class PreOrderIterator<T> implements Iterator<TreeNode<T>> {
     public TreeNode<T> next() {
         if (hasNext()) {
             TreeNode<T> next = stack.pop();
+            // recursive impl:
+            //     process(root);
+            //     preorder(root.left);
+            // stack machines know to resume here after above recursive call
+            // but an iterative approach doesn't  that
+            // once next is processed, we lose information about next's "frame" completely
+            // therefore we need to push next.right to the stack first
+            //     preorder(root.right);
             if (next.right != null) {
                 stack.push(next.right);
             }
