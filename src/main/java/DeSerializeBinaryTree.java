@@ -188,22 +188,26 @@ public class DeSerializeBinaryTree {
         int curr = 0;
         int child = curr + 1;
         while (curr <= child && child < nodes.size()) {
+            // NULL nodes don't have children, so skip them
             while (curr < nodes.size() && nodes.get(curr) == null) {
                 curr++;
             }
 
+            // since we've mutated curr we have to re-check while condition
             if (curr > child) {
                 break;
             }
 
-            if (child < nodes.size()) {
-                nodes.get(curr).left = nodes.get(child);
+            int left = child;
+            int right = child + 1;
+            if (left < nodes.size()) {
+                nodes.get(curr).left = nodes.get(left);
             }
-            if (child + 1 < nodes.size()) {
-                nodes.get(curr).right = nodes.get(++child);
+            if (right < nodes.size()) {
+                nodes.get(curr).right = nodes.get(right);
             }
+            child+=2;
             curr++;
-            child++;
         }
         return nodes.get(0);
     }
