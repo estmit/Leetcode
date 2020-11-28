@@ -8,7 +8,8 @@ public class SubdomainVisitCount {
         Map<String, Integer> domainCounter = new HashMap<>();
 
         for (String cpdomain : cpdomains) {
-            int splitIdx = cpdomain.indexOf(" ");
+            int splitIdx = cpdomain.indexOf(" "); // more efficient than cpdomain.split since we know there is only 1
+                                                  // space in the string
             Integer count = Integer.valueOf(cpdomain.substring(0, splitIdx));
             String domain = cpdomain.substring(splitIdx + 1);
             for (int i = domain.length() - 1; i >= 0; --i) {
